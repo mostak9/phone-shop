@@ -32,7 +32,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-neutral-200">
+    <div className="bg-neutral-200 ">
       {/* upper nav */}
       <div className="navbar max-w-7xl mx-auto py-0">
         <div className="flex-1">
@@ -114,7 +114,7 @@ const Navbar = () => {
       </div>
       <div className="divider my-0" />
       {/* lower nav */}
-      <div className="navbar max-w-7xl mx-auto">
+      <div className="navbar sticky top-0 z-10  max-w-7xl mx-auto">
         <div className="flex-1">
           <div className="">
             <div className="dropdown">

@@ -38,7 +38,10 @@ async function run() {
     })
     // api to get all the products
     app.get('/allProducts', async (req, res) => {
-      
+      const size = parseInt(req.query.size) || 0;
+      const limit = parseInt(req.query.limit) || null;
+      const result = await phonesCollection.find().skip(size).limit(limit).toArray();
+      res.send(result);
     })
     // api to get latest products
     app.get('/latestProducts', async(req, res) => {

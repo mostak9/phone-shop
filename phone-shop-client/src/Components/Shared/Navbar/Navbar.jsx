@@ -21,7 +21,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/categories"}>categories</NavLink>
+        <NavLink style={navStyle} to={"/allProducts"}>All Products</NavLink>
       </li>
       <li>
         <NavLink to={"/about"}>About Us</NavLink>
@@ -114,7 +114,7 @@ const Navbar = () => {
       </div>
       <div className="divider my-0" />
       {/* lower nav */}
-      <div className="navbar sticky top-0 z-10  max-w-7xl mx-auto">
+      <div className="navbar  max-w-7xl mx-auto">
         <div className="flex-1">
           <div className="">
             <div className="dropdown">

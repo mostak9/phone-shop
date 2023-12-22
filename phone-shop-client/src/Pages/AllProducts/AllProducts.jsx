@@ -9,42 +9,53 @@ const AllProducts = () => {
   const [hasMore, setHasMore] = useState(true);
   const [size, setSize] = useState(2);
   const [brands, setBrands] = useState([]);
+  const [brandSearch, setBrandSearch] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     axiosPublic
-      .get(`/allProducts?index=10&limit=10`)
+      .get(`/allProducts?index=10&limit=10&brand=${brandSearch}&name=${name}`)
       .then((res) => setItems(res.data));
-    axiosPublic.get("/brands").then((res) => setBrands(res.data.brands));
-  }, [axiosPublic]);
-  console.log(items);
+    axiosPublic.get("/brands").then((res) => setBrands(res.data));
+  }, [axiosPublic, brandSearch, name]);
 
   const fetchMoreData = () => {
-    axiosPublic.get(`/allProducts?size=${size}&limit=10`).then((res) => {
+    axiosPublic.get(`/allProducts?size=${size}&limit=10&brand=${brandSearch}&name=${name}`).then((res) => {
       setItems((prevItems) => [...prevItems, ...res.data]);
       res.data.length > 0 ? setHasMore(true) : setHasMore(false);
     });
     setSize((prevSize) => prevSize + 1);
   };
 
+ 
   return (
     <div className="max-w-7xl mx-auto my-16">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {/* slide bar */}
-        <div className="text-center">
-          <input
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
+        <div className="text-center flex items-center flex-col gap-5">
+          
+            <input
+            onChange={() => setName(event.target.value)}
+            name="name"
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
 
-          <select className="select select-bordered w-full max-w-xs">
-            <option disabled selected>
-              Pick Brand
-            </option>
-            {brands.map((brand, idx) => (
-              <option key={idx}>{brand}</option>
-            ))}
-          </select>
+            <select onChange={() => {
+              setBrandSearch(event.target.value)
+              
+            }} name="brand" className="select select-bordered w-full max-w-xs">
+              <option disabled selected>
+                Pick Brand
+              </option>
+              {brands.map((brand, idx) => (
+                <option value={brand} key={idx}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+
         </div>
         {/* card div */}
         <div className="md:col-span-2 lg:col-span-3">

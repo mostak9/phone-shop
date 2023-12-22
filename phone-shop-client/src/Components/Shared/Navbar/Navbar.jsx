@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 const navStyle = 
-    ({ isActive, isPending, isTransitioning }) => {
+    ({ isActive,  isTransitioning }) => {
         return {
           background: isActive ? "#17AF26": "",
           viewTransitionName: isTransitioning ? "slide" : "",
@@ -23,12 +23,7 @@ const Navbar = () => {
       <li>
         <NavLink style={navStyle} to={"/allProducts"}>All Products</NavLink>
       </li>
-      <li>
-        <NavLink to={"/about"}>About Us</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/Contact"}>Contact</NavLink>
-      </li>
+      
     </>
   );
   return (
@@ -148,15 +143,6 @@ const Navbar = () => {
             <div className="hidden lg:flex">
               <ul className="menu menu-horizontal px-1">{navLinks}</ul>
             </div>
-          </div>
-        </div>
-        <div className="flex-none gap-2">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered  md:w-auto"
-            />
           </div>
         </div>
       </div>

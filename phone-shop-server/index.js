@@ -35,8 +35,18 @@ async function run() {
     app.get("/allProducts", async (req, res) => {
       const index = parseInt(req.query.index) || 0;
       const limit = parseInt(req.query.limit) || null;
+      let filter = {}
+      if(req.query.brand){
+        filter = {brand: req.query.brand};
+      }
+      else if(req.query.name){
+        filter = {model:  { $regex: req.query.name, $options: 'i' }};
+      }
+      
+
+      console.log(req.query.brand);
       const result = await phonesCollection
-        .find()
+        .find(filter)
         .skip(index)
         .limit(limit)
         .toArray();
@@ -74,7 +84,7 @@ async function run() {
           }
         }
       ]).toArray();
-      res.send(data[0]);
+      res.send(data[0].brands.sort());
     })
 
     // Send a ping to confirm a successful connection

@@ -6,27 +6,6 @@ const ProductCard = ({ product }) => {
   const {
     brand,
     model,
-    network_technology,
-    network_speed,
-    announced,
-    status,
-    dimentions,
-    weight_g,
-    SIM,
-    display_type,
-    display_resolution,
-    display_size,
-    OS,
-    CPU,
-    Chipset,
-    internal_memory,
-    RAM,
-    primary_camera,
-    secondary_camera,
-    WLAN,
-    colors,
-    approx_price_EUR,
-    img_url,
     _id
   } = product;
 

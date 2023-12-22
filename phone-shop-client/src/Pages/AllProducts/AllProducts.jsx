@@ -25,18 +25,31 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <InfiniteScroll
-        dataLength={items.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<span className="loading loading-spinner text-primary"></span>}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {items &&
-            items.map((item) => <ProductCard product={item} key={item._id} />)}
+    <div className="max-w-7xl mx-auto my-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {/* slide bar */}
+        <div className="text-center">
+        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
         </div>
-      </InfiniteScroll>
+        {/* card div */}
+        <div className="md:col-span-2 lg:col-span-3">
+          <InfiniteScroll
+            dataLength={items.length}
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={
+              <span className="loading loading-spinner text-primary"></span>
+            }
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {items &&
+                items.map((item) => (
+                  <ProductCard product={item} key={item._id} />
+                ))}
+            </div>
+          </InfiniteScroll>
+        </div>
+      </div>
     </div>
   );
 };

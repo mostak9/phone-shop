@@ -8,11 +8,13 @@ const AllProducts = () => {
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [size, setSize] = useState(2);
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     axiosPublic
       .get(`/allProducts?index=10&limit=10`)
       .then((res) => setItems(res.data));
+    axiosPublic.get("/brands").then((res) => setBrands(res.data.brands));
   }, [axiosPublic]);
   console.log(items);
 
@@ -29,7 +31,20 @@ const AllProducts = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {/* slide bar */}
         <div className="text-center">
-        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          <input
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+          />
+
+          <select className="select select-bordered w-full max-w-xs">
+            <option disabled selected>
+              Pick Brand
+            </option>
+            {brands.map((brand, idx) => (
+              <option key={idx}>{brand}</option>
+            ))}
+          </select>
         </div>
         {/* card div */}
         <div className="md:col-span-2 lg:col-span-3">

@@ -31,18 +31,32 @@ async function run() {
     // await client.connect();
 
 
-
+    // api to get data count
+    app.get('/dataCount', async(req, res) => {
+      const result = await phonesCollection.estimatedDocumentCount();
+      res.send({result});
+    })
+    // api to get all the products
+    app.get('/allProducts', async (req, res) => {
+      
+    })
+    // api to get latest products
     app.get('/latestProducts', async(req, res) => {
         const result = await phonesCollection.aggregate([{$sample: {size: 12}}]).toArray();
         res.send(result);
     })
 
+    // api to get single products
     app.get('/productDetails/:id', async (req, res) => {
       const id = req.params.id;
       const query = {_id: new ObjectId(id)};
       const product = await phonesCollection.findOne(query);
       res.send(product);
     })
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");

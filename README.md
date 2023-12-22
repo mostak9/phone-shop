@@ -12,7 +12,7 @@ yarn add
 yarn dev
 ```
 
-### Server side Installation and Run
+## Server side Installation and Run
 
 ### Installation
 ```bash
